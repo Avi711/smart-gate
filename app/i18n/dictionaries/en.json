@@ -1,0 +1,25 @@
+{
+  "site": {
+    "title": "Smart Gate",
+    "description": "Welcome to your secure garage door control system",
+    "tapToOpen": "Tap the button below to open the gate"
+  },
+  "actions": {
+    "openGate": "Open Gate",
+    "opening": "Opening Gate...",
+    "changeLanguage": "שנה לעברית"
+  },
+  "notifications": {
+    "success": {
+      "title": "Gate opened successfully",
+      "description": "The gate is now opening..."
+    },
+    "error": {
+      "title": "Failed to open gate",
+      "description": "Please try again later"
+    }
+  },
+  "footer": {
+    "version": "Smart Gate System v1.0"
+  }
+} 

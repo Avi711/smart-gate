@@ -3,10 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useGateControl } from "@/app/hooks/useGateControl";
+import { useTranslation } from "@/app/i18n/hooks/useTranslation";
 import Image from "next/image";
 
 export default function Home() {
   const { isLoading, handleOpenGate } = useGateControl();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-[100dvh] relative overflow-hidden">
@@ -24,7 +26,7 @@ export default function Home() {
         {/* Header */}
         <header className="w-full max-w-md mx-auto mt-20 sm:mt-24">
           <h1 className="text-4xl sm:text-5xl font-bold text-white text-center tracking-tight">
-            Smart Gate Access
+            {t("site.title")}
           </h1>
         </header>
 
@@ -34,11 +36,9 @@ export default function Home() {
             {/* Gate Status and Description */}
             <div className="space-y-4 text-center px-4 backdrop-blur-sm bg-white/10 dark:bg-black/20 p-6 rounded-2xl">
               <p className="text-xl sm:text-2xl text-white/90 font-medium">
-                Welcome to your secure garage door control system
+                {t("site.description")}
               </p>
-              <p className="text-base text-white/70">
-                Tap the button below to open the gate
-              </p>
+              <p className="text-base text-white/70">{t("site.tapToOpen")}</p>
             </div>
 
             {/* Gate Control Button */}
@@ -52,11 +52,11 @@ export default function Home() {
                 <span className="flex items-center justify-center gap-3">
                   {isLoading ? (
                     <>
-                      <Loader2 className="h-6 w-6 animate-spin" />
-                      <span>Opening Gate...</span>
+                      <span>{t("actions.opening")}</span>
+                      <Loader2 className="h-6 w-6 animate-spin ltr:order-last rtl:order-first" />
                     </>
                   ) : (
-                    "Open Gate"
+                    t("actions.openGate")
                   )}
                 </span>
               </Button>
@@ -67,7 +67,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="w-full max-w-md mx-auto pb-6 sm:pb-10">
           <p className="text-sm text-center text-white/60">
-            Smart Gate System v1.0
+            {t("footer.version")}
           </p>
         </footer>
       </div>

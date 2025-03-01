@@ -1,0 +1,25 @@
+{
+  "site": {
+    "title": "שער חכם",
+    "description": "ברוכים הבאים למערכת בקרת השער החכמה של המעגל 13",
+    "tapToOpen": "לחצו על הכפתור כדי לפתוח את השער"
+  },
+  "actions": {
+    "openGate": "פתח שער",
+    "opening": "פותח שער",
+    "changeLanguage": "Change to English"
+  },
+  "notifications": {
+    "success": {
+      "title": "השער נפתח בהצלחה",
+      "description": "...השער נפתח כעת"
+    },
+    "error": {
+      "title": "שגיאה בפתיחת השער",
+      "description": "אנא נסו שוב מאוחר יותר"
+    }
+  },
+  "footer": {
+    "version": "1.0 מערכת שער חכם גרסה"
+  }
+} 
