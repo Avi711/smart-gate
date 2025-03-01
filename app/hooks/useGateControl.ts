@@ -12,9 +12,11 @@ export function useGateControl() {
     try {
       await openGate();
       toast.success("Gate opened successfully", {
+        description: "The gate is now opening...",
         ...TOAST_STYLES.success,
       });
     } catch (error) {
+      console.error(error);
       toast.error("Failed to open gate", {
         ...TOAST_STYLES.error,
       });
