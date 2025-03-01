@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useGateControl } from "@/app/hooks/useGateControl";
-import { useTranslation } from "@/app/i18n/hooks/useTranslation";
+import { useTranslation } from "@/app/components/client-translation-provider";
 import Image from "next/image";
 
 export default function Home() {

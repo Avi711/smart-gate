@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { openGate } from "@/app/services/gate-service";
 import { TOAST_STYLES } from "@/app/constants/toast-styles";
-import { useTranslation } from "@/app/i18n/hooks/useTranslation";
+import { useTranslation } from "@/app/components/client-translation-provider";
 
 export function useGateControl() {
   const [isLoading, setIsLoading] = useState(false);

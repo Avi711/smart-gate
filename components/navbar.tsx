@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
-import { useTranslation } from "@/app/i18n/hooks/useTranslation";
+import { useTranslation } from "@/app/components/client-translation-provider";
 import {
   ShieldCheckIcon,
   DoorOpenIcon,
