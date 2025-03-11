@@ -14,7 +14,6 @@ export function useGateControl() {
     try {
       await openGate();
       toast.success(t("notifications.success.title"), {
-        description: t("notifications.success.description"),
         ...TOAST_STYLES.success,
       });
     } catch (error) {

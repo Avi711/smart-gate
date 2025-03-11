@@ -11,8 +11,7 @@
   },
   "notifications": {
     "success": {
-      "title": "Gate opened successfully",
-      "description": "The gate is now opening..."
+      "title": "Gate opened successfully"
     },
     "error": {
       "title": "Failed to open gate",

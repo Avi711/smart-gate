@@ -11,8 +11,7 @@
   },
   "notifications": {
     "success": {
-      "title": "השער נפתח בהצלחה",
-      "description": "...השער נפתח כעת"
+      "title": "השער נפתח בהצלחה"
     },
     "error": {
       "title": "שגיאה בפתיחת השער",
