@@ -78,8 +78,7 @@ void loop() {
   if (isPostRequest) {
     // Activate the gate
     digitalWrite(GATE_CONTROL_PIN, HIGH);
-    delay(1000);  // Keep the signal high for 1 second
-    digitalWrite(GATE_CONTROL_PIN, LOW);
+    delay(2000);
     
     // Send HTTP response
     client.println("HTTP/1.1 200 OK");
@@ -104,4 +103,15 @@ void loop() {
   // Close the connection
   client.stop();
   Serial.println("Client disconnected");
+
+
+  digitalWrite(GATE_CONTROL_PIN, LOW);
+  delay(500);
+  digitalWrite(GATE_CONTROL_PIN, HIGH);
+  delay(2000);
+  digitalWrite(GATE_CONTROL_PIN, LOW);
+  delay(500);
+  digitalWrite(GATE_CONTROL_PIN, HIGH);
+  delay(2000);
+  digitalWrite(GATE_CONTROL_PIN, LOW);
 } 

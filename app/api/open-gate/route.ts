@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
-    const response = await fetch("http://5.29.151.107:8000", {
+    const response = await fetch("http://5.29.146.38:8000", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
