@@ -1,13 +1,4 @@
 import "@/app/globals.css";
-import { ThemeProvider } from "@/app/providers/theme-provider";
-import { ClientTranslationProvider } from "@/app/components/client-translation-provider";
-import { Toaster } from "@/components/ui/sonner";
-import { Geist } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Smart Gate Access - Compatible Mode",
