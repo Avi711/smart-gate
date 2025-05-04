@@ -5,6 +5,8 @@
 const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 
+const char* API_KEY = "kakdila_kakdila";
+
 // Pin configuration
 const int GATE_CONTROL_PIN = 2;  // Change this to the pin connected to your gate control relay
 
@@ -71,14 +73,19 @@ void loop() {
   while (client.available()) {
     client.read();
   }
-
+  bool isAuth = 0;
   bool isPostRequest = request.indexOf("POST") == 0;
+  bool isValidRoute = request.indexOf("/open-gate") > 0;
+  bool hasValidApiKey = request.indexOf("key=" + String(API_KEY)) > 0;
   
   // Handle the request
-  if (isPostRequest) {
+  if (isPostRequest && isValidRoute && hasValidApiKey) {
     // Activate the gate
+    isAuth = 1;
+    Serial.println("Opening gate - valid request received");
     digitalWrite(GATE_CONTROL_PIN, HIGH);
     delay(2000);
+    digitalWrite(GATE_CONTROL_PIN, LOW);
     
     // Send HTTP response
     client.println("HTTP/1.1 200 OK");
@@ -88,13 +95,25 @@ void loop() {
     client.println();
     client.println("{\"status\":\"success\",\"message\":\"Gate opened successfully\"}");
   } else {
-    // Send 405 Method Not Allowed for non-POST requests
-    client.println("HTTP/1.1 405 Method Not Allowed");
+    String errorReason = "Unknown error";
+    if (!isPostRequest) {
+      errorReason = "Method not allowed";
+    } else if (!isValidRoute) {
+      errorReason = "Invalid route";
+    } else if (!hasValidApiKey) {
+      errorReason = "Invalid or missing API key";
+    }
+    
+    // Send 403 Forbidden for invalid requests
+    client.println("HTTP/1.1 403 Forbidden");
     client.println("Content-Type: application/json");
     client.println("Access-Control-Allow-Origin: *");
     client.println("Connection: close");
     client.println();
-    client.println("{\"status\":\"error\",\"message\":\"Method not allowed\"}");
+    client.println("{\"status\":\"error\",\"message\":\"" + errorReason + "\"}");
+    
+    Serial.print("Request denied: ");
+    Serial.println(errorReason);
   }
 
   // Give the web browser time to receive the data
@@ -103,15 +122,15 @@ void loop() {
   // Close the connection
   client.stop();
   Serial.println("Client disconnected");
-
-
-  digitalWrite(GATE_CONTROL_PIN, LOW);
-  delay(500);
-  digitalWrite(GATE_CONTROL_PIN, HIGH);
-  delay(2000);
-  digitalWrite(GATE_CONTROL_PIN, LOW);
-  delay(500);
-  digitalWrite(GATE_CONTROL_PIN, HIGH);
-  delay(2000);
-  digitalWrite(GATE_CONTROL_PIN, LOW);
+  if (isAuth) {
+    digitalWrite(GATE_CONTROL_PIN, LOW);
+    delay(500);
+    digitalWrite(GATE_CONTROL_PIN, HIGH);
+    delay(2000);
+    digitalWrite(GATE_CONTROL_PIN, LOW);
+    delay(500);
+    digitalWrite(GATE_CONTROL_PIN, HIGH);
+    delay(2000);
+    digitalWrite(GATE_CONTROL_PIN, LOW);
+  }
 } 
