@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST() {
   try {
     const response = await fetch(
-      "http://5.29.146.38:8000/open-gate?key=kakdila_kakdila",
+      "http://37.142.96.227:8000/open-gate?key=kakdila_kakdila",
       {
         method: "POST",
         headers: {
