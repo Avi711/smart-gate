@@ -2,8 +2,14 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
+    const gateServerIp = process.env.GATE_SERVER_IP || "37.142.96.227";
+    const gateServerPort = process.env.GATE_SERVER_PORT || "8000";
+    const gateApiKey = process.env.GATE_API_KEY || "kakdila_kakdila";
+
+    console.log(gateServerIp, gateServerPort, gateApiKey);
+
     const response = await fetch(
-      "http://37.142.96.227:8000/open-gate?key=kakdila_kakdila",
+      `http://${gateServerIp}:${gateServerPort}/open-gate?key=${gateApiKey}`,
       {
         method: "POST",
         headers: {
